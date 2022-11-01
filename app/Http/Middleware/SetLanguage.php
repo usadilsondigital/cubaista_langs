@@ -19,6 +19,7 @@ class SetLanguage
         if(!in_array($locale, config('app.locales'))){
             return redirect(url(getCurrentUrlWithLocale(config('app.fallback_locale'))));
         }
+        app()->setLocale($locale);
         return $next($request);
     }
 }

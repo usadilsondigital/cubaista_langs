@@ -3,7 +3,6 @@
     function getCurrentUrlWithLocale(string $locale)
     {
         $segments = request()->segments();
-        $segments[0] = $locale;        
-        app()->setLocale($locale);
+        $segments[0] = $locale;      
         return implode('/',$segments);
     }

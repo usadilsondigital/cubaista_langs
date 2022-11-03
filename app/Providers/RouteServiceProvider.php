@@ -19,6 +19,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/{locale}/dashboard';
     public const WELCOME = '/{locale}/welcome';
+    public const LANGUAGE = '/{locale}/language';
+
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

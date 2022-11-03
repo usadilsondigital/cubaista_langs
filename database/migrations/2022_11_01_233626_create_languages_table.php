@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('languages', function (Blueprint $table) {
             $table->id();
+            $table->string('code');
+            $table->string('english_name');
+            $table->string('directionality');
+            $table->string('local_name')->nullable();
+            $table->string('url_wiki')->nullable();
             $table->timestamps();
         });
     }

@@ -1,0 +1,77 @@
+https://meta.wikimedia.org/wiki/Template:List_of_language_names_ordered_by_code
+
+ar-Arabic
+az	Azerbaijani
+be	Belarusian
+bg	Bulgarian
+bn	Bengali
+bs	Bosnian
+ca	Catalan
+cs	Czech
+da	Danish
+de	German
+el	Greek
+es	Spanish
+fa	Persian
+fi	Finnish
+fr	French
+ga	Irish
+gn	Guarani
+ha	Hausa
+haw	Hawaiian
+he	Hebrew
+hi	Hindi
+hr	Croatian
+hu	Hungarian
+hy	Armenian
+it	Italian
+ja	Japanese
+jv	Javanese
+km	Cambodian
+ko	Korean
+la	Latin
+lt	Lithuanian
+lv	Latvian
+man	Mandarin
+mn	Mongolian
+mr	Marathi
+pa	Punjabi
+pl	Polish
+pt	Portuguese
+ru	Russian
+sr	Serbian
+sv	Swedish
+ta	Tamil
+te	Telugu
+tr	Turkish
+ur	Urdu
+vi	Vietnamese
+zh	Chinese
+zh-yue	Cantonese
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Models\Language;
 
 class SetLanguage
 {
@@ -15,8 +16,11 @@ class SetLanguage
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
-    { $locale = $request->segment(1);
-        if(!in_array($locale, config('app.locales'))){
+    { 
+        $codes = Language::pluck('code');
+        $locale = $request->segment(1);
+        //if(!in_array($locale, config('app.locales'))){
+            if(!in_array($locale, $codes->toArray())){
             return redirect(url(getCurrentUrlWithLocale(config('app.fallback_locale'))));
         }
         app()->setLocale($locale);

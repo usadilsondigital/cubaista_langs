@@ -15,7 +15,8 @@ class LanguageController extends Controller
      */
     public function index()
     {
-        return view('languageview.index');
+        $codes = Language::pluck('code')->toArray();
+        return view('languageview.index', ['codes' => $codes]);
     }
 
     /**
@@ -36,20 +37,7 @@ class LanguageController extends Controller
      */
     public function store(StoreLanguageRequest $request)
     {
-        /*$locales = \Config::get('app.locales');        
-        array_push($locales,$request->code);
-        
-        \Config::set('app.locales', $locales);
-        //salvalo en el fichero
-        $path_to_file = 'path/to/the/file';
-        $file_contents = file_get_contents($path_to_file);
-        $file_contents = str_replace("\nH", ",H", $file_contents);
-        file_put_contents($path_to_file, $file_contents);
-
-
-        dd(\Config::get('app.locales'));   
-
-      /*  $validated = $request->validate([
+        $validated = $request->validate([
             'code' => 'required|string|max:255',
             'english_name' => 'required|string|max:255',
             'directionality' => 'required|string|max:255',
@@ -58,14 +46,10 @@ class LanguageController extends Controller
         ]);
 
         $language = Language::firstOrNew(
-            ['code' => $request->code, 'english_name' => $request->english_name,'directionality' => $request->directionality],
-            ['local_name' =>$request->local_name,'url_wiki' =>$request->url_wiki]
+            ['code' => $request->code, 'english_name' => $request->english_name, 'directionality' => $request->directionality],
+            ['local_name' => $request->local_name, 'url_wiki' => $request->url_wiki]
         );
-        $language->save();*/
-
-        //leer la lista de lenguages
-        //ponerlo en el listado de lenguages
- 
+        $language->save();
         return redirect(route('language.index'))->with('success', ' New language created!');
     }
 

@@ -38,8 +38,10 @@ Route::get('/initial', function () {
 
 /* MODELS */
 Route::controller(LanguageController::class)->group(function () {
-    Route::get('/language', 'index')->name('language.index')->middleware(['auth', 'verified']);
+    Route::get('/language', 'index')->name('language.index')->middleware(['can:admin','auth', 'verified']);
     Route::post('/language', 'store')->name('language.store')->middleware(['auth', 'verified']); 
+    Route::get('/languages', 'list')->name('language.list');
+    Route::get('/language/{id}/edit', 'edit')->name('language.edit');
 });
 
 

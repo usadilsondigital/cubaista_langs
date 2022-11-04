@@ -90,7 +90,10 @@ class LanguageController extends Controller
      */
     public function edit(Language $language)
     {
-        dd('edit');
+        abort_if(auth()->user()->cannot('admin'), 403);
+       
+        $codes = Language::pluck('code')->toArray();
+        return view('languageview.index', ['codes' => $codes]);
     }
 
     /**

@@ -149,7 +149,9 @@
                     <tr>
                         <th> {{ __('messages.code') }}</th>
                         <th> {{ __('messages.english_name') }}</th>
-                        <th> {{ __('messages.options') }}</th>
+                        @can('admin')
+                            <th> {{ __('messages.options') }}</th>
+                        @endcan            
                     </tr>
                 </thead>
                 <tbody>
@@ -157,9 +159,11 @@
                     <tr>
                         <td>{{$lang->code}}</td>
                         <td>{{$lang->english_name}}</td>
+                        @can('admin')
                         <td>
                             <a type="button" class="btn btn-warning" href="language/{{$lang->id}}/edit">{{ __('messages.edit') }}</a>
                         </td>
+                        @endcan 
                     </tr>
                     @endforeach
                 </tbody>

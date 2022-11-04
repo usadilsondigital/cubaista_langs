@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Language;
+use App\Models\User;
 use App\Http\Requests\StoreLanguageRequest;
 use App\Http\Requests\UpdateLanguageRequest;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class LanguageController extends Controller
 {
@@ -14,8 +16,18 @@ class LanguageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function list()
+    {
+        
+        $languages = Language::all();
+        $codes = Language::pluck('code')->toArray();
+        return view('languageview.list', ['languages' => $languages,'codes' => $codes]);
+    }
+    
     public function index()
     {
+        abort_if(auth()->user()->cannot('admin'), 403);
+       
         $codes = Language::pluck('code')->toArray();
         return view('languageview.index', ['codes' => $codes]);
     }
@@ -38,6 +50,7 @@ class LanguageController extends Controller
      */
     public function store(StoreLanguageRequest $request)
     {
+        
         $validated = $request->validate([
             'code' => 'required|string|max:4',
             'english_name' => 'required|string|max:255',
@@ -77,7 +90,7 @@ class LanguageController extends Controller
      */
     public function edit(Language $language)
     {
-        //
+        dd('edit');
     }
 
     /**

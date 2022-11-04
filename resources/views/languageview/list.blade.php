@@ -35,9 +35,11 @@
             {{ __('messages.think_you_might') }} {{ __('messages.so_you_are_a_cubaista') }} </h3>
         <h4>{{ __('messages.and') }} {{ __('messages.we_are_your_dmc') }} <b style="color:navy">({{ __('messages.destination_management_company') }})</b></h4>
     </div>
+   
 
     <nav class="navbar navbar-expand-lg bg-info">
         <div class="container-fluid">
+            
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -91,6 +93,12 @@
                     </li>
                 </ul>
             </div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="initial">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Languages</li>
+                </ol>
+            </nav>
         </div>
     </nav>
 
@@ -142,8 +150,14 @@
             @endif
 
         </div>
+        <div class="card">
+            <div class="card-body text-center">
+                {{ __('messages.languages') }}
+            </div>
+          </div>
 
         <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+            
             <table id="table_id" class="display">
                 <thead>
                     <tr>

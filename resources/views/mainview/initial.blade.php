@@ -26,6 +26,7 @@
         <h4>{{ __('messages.and') }} {{ __('messages.we_are_your_dmc') }} <b style="color:navy">({{ __('messages.destination_management_company') }})</b></h4>
     </div>
 
+    
     <nav class="navbar navbar-expand-lg bg-info">
         <div class="container-fluid">
             @can('admin')

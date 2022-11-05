@@ -40,17 +40,17 @@ Route::get('/initial', function () {
 
 /* MODELS */
 Route::controller(LanguageController::class)->group(function () {
-    Route::get('/language', 'index')->name('language.index')->middleware(['can:admin','auth', 'verified']);
-    Route::post('/language', 'store')->name('language.store')->middleware(['auth', 'verified']); 
+    Route::get('/language', 'index')->name('language.index')->middleware(['can:admin','auth']);
+    Route::post('/language', 'store')->name('language.store')->middleware(['auth']); 
     Route::get('/languages', 'list')->name('language.list');
     Route::get('/language/{id}/edit', 'edit')->name('language.edit');
 });
 
 Route::controller(ProductController::class)->group(function () {
-    Route::get('/product', 'create')->name('language.create')->middleware(['can:admin','auth', 'verified']);
-    Route::post('/product', 'store')->name('language.store')->middleware(['auth', 'verified']); 
-    Route::get('/products', 'index')->name('language.index');
-    Route::get('/product/{id}/edit', 'edit')->name('language.edit');
+    Route::get('/product', 'create')->name('product.create')->middleware(['can:admin','auth']);
+    Route::post('/product', 'store')->name('product.store')->middleware(['auth']); 
+    Route::get('/products', 'index')->name('product.index');
+    Route::get('/product/{id}/edit', 'edit')->name('product.edit');
 });
 
 Route::get('/about', function () {    

@@ -33,7 +33,7 @@
             <a class="navbar-brand" href="#">Admin</a>
             @endcan
             @can('admin')
-            <a class="navbar-brand" href="{{route('language.index')}}">Language</a>
+            <a class="navbar-brand" href="{{route('language.list')}}">Languages</a>
             @endcan
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -43,10 +43,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="initial">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link active" aria-current="page" href="initial">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="initial">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="initial">Products </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="initial">Contact Us</a>
                     </li>
 
 
@@ -68,10 +77,6 @@
                             @endforeach
 
                         </ul>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">

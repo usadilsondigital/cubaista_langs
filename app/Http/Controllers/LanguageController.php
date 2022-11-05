@@ -65,9 +65,10 @@ class LanguageController extends Controller
                 ['local_name' => $request->local_name, 'url_wiki' => $request->url_wiki]
             );
             $language->save();
+
             return redirect(route('language.index'))->with('success', ' New language created!');
         } else {
-            return redirect(RouteServiceProvider::LANGUAGE)->with('error', ' Code already registered, change code');
+            return redirect(RouteServiceProvider::LANGUAGE)->with('error', __('messages.code_already_registered'));
         }
     }
 

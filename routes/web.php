@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\LanguageController;
 use App\Models\Language;
+use App\Http\Controllers\ProductController;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,5 +46,21 @@ Route::controller(LanguageController::class)->group(function () {
     Route::get('/language/{id}/edit', 'edit')->name('language.edit');
 });
 
+Route::controller(ProductController::class)->group(function () {
+    Route::get('/product', 'create')->name('language.create')->middleware(['can:admin','auth', 'verified']);
+    Route::post('/product', 'store')->name('language.store')->middleware(['auth', 'verified']); 
+    Route::get('/products', 'index')->name('language.index');
+    Route::get('/product/{id}/edit', 'edit')->name('language.edit');
+});
+
+Route::get('/about', function () {    
+    $codes = Language::pluck('code')->toArray();    
+    return view('aboutview.about', ['codes' => $codes]);
+});
+
+Route::get('/contact', function () {    
+    $codes = Language::pluck('code')->toArray();    
+    return view('aboutview.about', ['codes' => $codes]);
+});
 
 require __DIR__.'/auth.php';

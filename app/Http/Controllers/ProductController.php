@@ -28,7 +28,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $codes = Language::pluck('code')->toArray();
+        return view('productview.create', ['codes' => $codes]);
     }
 
     /**

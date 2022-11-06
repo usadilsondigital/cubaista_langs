@@ -3,9 +3,12 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\About;
 use Illuminate\Database\Seeder;
 use Database\Seeders\LanguageSeeder;
 use Database\Seeders\CubaistaSeeder;
+use Database\Seeders\AboutSeeder;
 use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
@@ -59,6 +62,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             LanguageSeeder::class,
             ProductSeeder::class,
+            AboutSeeder::class,
         ]);
     }
 }

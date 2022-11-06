@@ -14,6 +14,11 @@ class AboutSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \DB::table('abouts')->insert([
+            'title' => '{"en":"Stay informed about Cubaista"}',
+            'body' => '{"en":"from company facts and news to our worldwide locations and more"}',
+            'active' => 1,
+            'created_at' => now(),
+        ]);
     }
 }

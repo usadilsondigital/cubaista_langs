@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Language;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Providers\RouteServiceProvider;
 
 class ProductController extends Controller
 {
@@ -40,7 +41,23 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|string|max:4',
+            'description' => 'required|text',
+        ]);
+        dd($validated);
+        $consult  = \DB::table('products')->where('title', strtolower($request->code))->count();
+        if ($consult == 0) {
+            $language = Language::firstOrNew(
+                ['code' => strtolower($request->code), 'english_name' => $request->english_name, 'directionality' => $request->directionality],
+                ['local_name' => $request->local_name, 'url_wiki' => $request->url_wiki]
+            );
+            $language->save();
+
+            return redirect(route('language.index'))->with('success', __('messages.new_product_created'));
+        } else {
+            return redirect(RouteServiceProvider::LANGUAGE)->with('error', __('messages.code_already_registered'));
+        }
     }
 
     /**

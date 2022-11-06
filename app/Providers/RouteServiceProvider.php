@@ -20,6 +20,7 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/{locale}/dashboard';
     public const WELCOME = '/{locale}/welcome';
     public const LANGUAGE = '/{locale}/language';
+    public const ABOUT = '/{locale}/about';
 
 
     /**

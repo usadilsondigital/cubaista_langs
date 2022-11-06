@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\LanguageController;
 use App\Models\Language;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AboutController;
 use App\Models\Product;
+use App\Models\About;
 
 /*
 |--------------------------------------------------------------------------

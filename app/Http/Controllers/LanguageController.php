@@ -8,6 +8,7 @@ use App\Http\Requests\StoreLanguageRequest;
 use App\Http\Requests\UpdateLanguageRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
 
 class LanguageController extends Controller
 {
@@ -58,7 +59,7 @@ class LanguageController extends Controller
             //'local_name' => 'string|max:255',
             //'url_wiki' => 'url',
         ]);
-        $consult  = \DB::table('languages')->where('code', strtolower($request->code))->count();
+        $consult  = DB::table('languages')->where('code', strtolower($request->code))->count();
         if ($consult == 0) {
             $language = Language::firstOrNew(
                 ['code' => strtolower($request->code), 'english_name' => $request->english_name, 'directionality' => $request->directionality],

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\LanguageController;
 use App\Models\Language;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ControlpanelController;
 use App\Http\Controllers\AboutController;
 use App\Models\Product;
 use App\Models\About;
@@ -35,8 +36,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/initial', function () {        
-    $codes = Language::pluck('code')->toArray();
-   
+    $codes = Language::pluck('code')->toArray();   
     return view('mainview.initial',['codes' => $codes]);
 })->name('home');
 
@@ -57,19 +57,26 @@ Route::controller(ProductController::class)->group(function () {
 
 Route::controller(AboutController::class)->group(function () {
     Route::get('/about', 'create')->name('about.create')->middleware(['can:admin','auth']);
+    Route::get('/about/{id}/translate', 'translate')->name('about.translate')->middleware(['can:admin','auth']);
     Route::post('/about', 'store')->name('about.store')->middleware(['auth']); 
+    Route::post('/about/translate', 'translatestore')->name('about.translatestore')->middleware(['auth']); 
     Route::get('/abouts', 'index')->name('about.index');
     Route::get('/about/{id}/edit', 'edit')->name('about.edit')->middleware(['auth']);
 });
 
-Route::get('/aboutus', function () {    
+Route::get('/aboutus', function () {  
+    $about = About::where('active',1)->first();  
     $codes = Language::pluck('code')->toArray();    
-    return view('aboutview.about', ['codes' => $codes]);
-});
+    return view('aboutview.about', ['codes' => $codes,'about'=>$about]);
+})->name('aboutus');
 
 Route::get('/contact', function () {    
     $codes = Language::pluck('code')->toArray();    
     return view('aboutview.about', ['codes' => $codes]);
-});
+})->name('contactus');
 
+/*Control Panel */
+Route::controller(ControlpanelController::class)->group(function () {
+    Route::get('/control', 'index')->name('control')->middleware(['can:admin','auth']);
+});
 require __DIR__.'/auth.php';

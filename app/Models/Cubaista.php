@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Cubaista extends Model
 {
     use HasFactory;
+    protected $table = "cubaistas";
+
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'email',
+        'website',
+        'company_name',
+        'additional_notes'
+    ];
+
 }

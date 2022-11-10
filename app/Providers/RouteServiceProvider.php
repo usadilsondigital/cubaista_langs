@@ -18,7 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/{locale}/dashboard';
-    public const WELCOME = '/{locale}/welcome';
+    public const WELCOME = '/{locale}/initial';
     public const LANGUAGE = '/{locale}/language';
     public const ABOUT = '/{locale}/about';
 

@@ -16,9 +16,9 @@
     .flip-card-front, .flip-card-back {width: 100%;height: 100%;-webkit-backface-visibility: hidden; /* Safari */backface-visibility: hidden;}
     .flip-card-back{position: absolute;top: 0px;}
     /* Style the front side (fallback if image is missing) */
-    .flip-card-front {background-color: #bbb;color: black;}
+    .flip-card-front {/*background-color: #bbb;*/color: black;}
     /* Style the back side */
-    .flip-card-back {background-color: dodgerblue;color: white;transform: rotateY(180deg);}
+    .flip-card-back {/*background-color: dodgerblue;*/color: black;transform: rotateY(180deg);}
 
     /*BUTTON TOP*/
     #myBtn {display: none;position: fixed;bottom: 20px;right: 30px;z-index: 99;font-size: 18px;border: none;outline: none;background-color: red;color: white;cursor: pointer;padding: 15px;border-radius: 4px;}
@@ -33,26 +33,27 @@
 
     <div id="aboutDiv" class="card text-center">
         <div class="card-body">
-            <h5 class="card-title"> {{ __('messages.about') }}</h5>
+            <h5 class="card-title"> {{ __('messages.about') }} {{ __('messages.our') }} {{ __('messages.company') }}</h5>
         </div>
     </div>
 
     <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <img src="/storage/img_avatar.png" alt="Avatar" style="width:300px;height:300px;">
+                <img src="/storage/img_avatar.png" alt="Avatar" style="width:300px;height:150px;">
             </div>
             <div class="flip-card-back">
-                <h1>John Doe</h1>
-                <p>Architect & Engineer</p>
-                <p>We love that guy</p>
+                <h1>{{ $about->title}}</h1>
+                <p> </p>
+                <p>{{ $about->body}}</p>
             </div>
         </div>
     </div>
 
-    <h3>
+    <h3>        
         Committed to significantly improving the lives of as many people as possible
     </h3>
+    <br/>
 
     <div id="contactDiv" class="card text-center">
         <div class="card-body">
@@ -63,21 +64,21 @@
 
     <div>
         <form action="/action_page.php">
-            <label for="fname">Full Name</label>
-            <input type="text" id="fullname" name="fullname" placeholder="Your name.." autocomplete="off" required>
+            <label for="fname">{{ __('messages.full') }} {{ __('messages.name') }}</label>
+            <input type="text" id="fullname" name="fullname" placeholder="{{ __('messages.your') }} {{ __('messages.name') }} .." autocomplete="off" required>
 
-            <label for="email">Email</label>
-            <input type="text" id="email" name="email" placeholder="Your email.." autocomplete="off" required>
+            <label for="email">{{ __('messages.email') }}</label>
+            <input type="text" id="email" name="email" placeholder="{{ __('messages.your') }} {{ __('messages.email') }} .." autocomplete="off" required>
 
-            <label for="country">Country</label>
+            <label for="country">{{ __('messages.country') }}</label>
             <select id="country" name="country" required>
                 <option value="australia">Australia</option>
                 <option value="canada">Canada</option>
                 <option value="usa">USA</option>
             </select>
 
-            <label for="subject">Subject</label>
-            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px" autocomplete="off"
+            <label for="subject">{{ __('messages.subject') }}</label>
+            <textarea id="subject" name="subject" placeholder="{{ __('messages.write') }} {{ __('messages.something') }} .." style="height:200px" autocomplete="off"
                 required></textarea>
 
             <input type="submit" value="Submit">

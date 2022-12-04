@@ -16,6 +16,10 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    
+    <style>
+    @yield('css')
+    </style>
 
     <script>
         @yield('script_begin')
@@ -40,7 +44,7 @@
         <nav class="navbar navbar-expand-lg bg-info">
             <div class="container-fluid">
                 @can('admin')
-                    <a class="navbar-brand" href="#">Admin</a>
+                    <a class="navbar-brand" href="{{route('control')}}">Admin</a>
                 @endcan
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -50,22 +54,25 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="initial">Home</a>
+                            <a class="nav-link" aria-current="page" href="{{route('home')}}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="dashboard">Dashboard</a>
+                            <a class="nav-link" aria-current="page" href="{{route('dashboard')}}">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="languages">Languages</a>
+                            <a class="nav-link" aria-current="page" href="{{route('language.list')}}">Languages</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="initial">Services</a>
+                            <a class="nav-link" aria-current="page" href="{{route('home')}}">Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="initial">Products </a>
+                            <a class="nav-link" aria-current="page" href="{{route('product.index')}}">Products </a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{{ URL::route('aboutus') }}#aboutDiv">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="initial">Contact Us</a>
+                            <a class="nav-link" aria-current="page" href="{{ URL::route('aboutus') }}#contactDiv">Contact Us</a>
                         </li>
     
                         <li class="nav-item dropdown">
@@ -78,7 +85,7 @@
                                     <li>
                                         <a class="dropdown-item" href="{{ url(getCurrentUrlWithLocale($locale)) }}">
                                             @if (app()->isLocale($locale))
-                                                <span></span>
+                                                <span>&#10003;</span>
                                             @endif
                                             <span> {{ $locale }}</span>
                                         </a>

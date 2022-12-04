@@ -1,7 +1,7 @@
 @extends('layouts.layout')
  
 @section('current')
-<li class="breadcrumb-item active" aria-current="page">Create Language</li>
+<li class="breadcrumb-item active" aria-current="page"> {{ __('messages.create') }}  {{ __('messages.language') }}</li>
 @endsection
 
 @section('content')

@@ -20,8 +20,8 @@
     <input type="text" name="title" placeholder="{{ __('messages.title') }}" autocomplete="off" required
         data-bs-toggle="tooltip"
         data-bs-placement="top" data-bs-custom-class="custom-tooltip"
-        data-bs-title="only letters [max 4], example: 'es' to Spanish "
-        pattern="[a-zA-Z]*" maxlength="4"
+        data-bs-title="title of the product "
+        maxlength="4"
         class="form-control @error('title') is-invalid @enderror">{{ old('title') }}</input>
     @error('title')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -37,7 +37,7 @@
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
     <br />
-    <button type="submit" class="mt-4">{{ __('messages.save') }} {{ __('messages.language') }}</button>
+    <button type="submit" class="mt-4">{{ __('messages.save') }} {{ __('messages.product') }}</button>
 
 
 

@@ -33,7 +33,7 @@
                 @can('admin')
                     <td>
                         <a type="button" class="btn btn-warning"
-                            href="language/{{ $prod->id }}/edit">{{ __('messages.edit') }}</a>
+                            href="product/{{ $prod->id }}/edit">{{ __('messages.edit') }}</a>
                     </td>
                 @endcan
             </tr>

@@ -6,9 +6,13 @@ use App\Http\Controllers\LanguageController;
 use App\Models\Language;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ControlpanelController;
+use App\Http\Controllers\CubaistaController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CustomRegisterController;
 use App\Models\Product;
 use App\Models\About;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +29,7 @@ use App\Models\About;
     return view('welcome');
 });*/
 Route::get('/', function () {
-    $codes = Language::pluck('code')->toArray();
- 
+    $codes = Language::pluck('code')->toArray(); 
   return redirect('/{locale}/initial');
 });
 
@@ -35,9 +38,27 @@ Route::get('/dashboard', function () {
     return view('dashboard', ['codes' => $codes]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+/*
 Route::get('/initial', function () {        
     $codes = Language::pluck('code')->toArray();   
     return view('mainview.initial',['codes' => $codes]);
+})->name('home');*/
+
+Route::get('/initial', function () {        
+    $codes = Language::pluck('code')->toArray();
+    $random = rand(10000, 99999);
+        $im = imagecreatetruecolor(200, 30);
+        $white = imagecolorallocate($im, 255, 255, 255);
+        $black = imagecolorallocate($im, 0, 0, 0);
+        imagefilledrectangle($im, 0, 0, 200, 29, $white);
+        $text = $random;
+        $font = './arial.ttf';
+        imagettftext($im, 30, 0, 10, 30, $black, $font, $text);
+        ob_start();
+        imagepng($im);
+        $imstr = base64_encode(ob_get_clean());
+        imagedestroy($im);   
+    return view('mainview.initial',['codes' => $codes,'random' => $random,'data' => $imstr]);
 })->name('home');
 
 /* MODELS */
@@ -79,4 +100,40 @@ Route::get('/contact', function () {
 Route::controller(ControlpanelController::class)->group(function () {
     Route::get('/control', 'index')->name('control')->middleware(['can:admin','auth']);
 });
+
+/*Users  */
+Route::controller(UserController::class)->group(function () {
+    Route::get('/users', 'index')->name('users.index')->middleware(['can:admin','auth']);
+});
+
+/*Cubaista*/
+Route::controller(CubaistaController::class)->group(function () {
+
+    Route::get('/cubaista', 'index')->name('cubaista.index');
+    Route::get('/cubaista/create', 'create')->name('cubaista.create');
+    Route::post('/cubaista', 'store')->name('cubaista.store');
+});
+
+/*Custom */
+Route::controller(CustomRegisterController::class)->group(function () {
+    Route::get('/cubaista/mail/{email}', 'mail')->name('custom.mail');
+    Route::post('/cubaista/mail/store', 'store')->name('custom.store');
+});
+
+/*
+$random = rand(10000, 99999);
+        $im = imagecreatetruecolor(200, 30);
+        $white = imagecolorallocate($im, 255, 255, 255);
+        $black = imagecolorallocate($im, 0, 0, 0);
+        imagefilledrectangle($im, 0, 0, 200, 29, $white);
+        $text = $random;
+        $font = './arial.ttf';
+        imagettftext($im, 30, 0, 10, 30, $black, $font, $text);
+        ob_start();
+        imagepng($im);
+        $imstr = base64_encode(ob_get_clean());
+        imagedestroy($im);
+        
+        return view('welcome', array('data' => $imstr,'random' => $random,'local'=> request()->segments(1)[0]));
+*/
 require __DIR__.'/auth.php';
